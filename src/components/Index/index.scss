@@ -1,0 +1,314 @@
+$borderColor: #8c3108;
+$backgroundColor: #fff7b1;
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.index {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    header {
+        background: #f93930;
+        width: 100%;
+        height: 14vw;
+        border-bottom: .4vw solid $borderColor;
+        padding-bottom: .5vw;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        box-shadow: 0 2px 3px 0 rgba(90, 5, 5, 0.3);
+        position: fixed;
+        z-index: 2;
+
+        .header-in {
+            width: 55%;
+            height: 80%;
+            display: flex;
+            justify-content: space-between;
+
+            button {
+                background: #f93930;
+                width: 22vw;
+                height: 100%;
+                font-size: 6vw;
+                color: #fff;
+                border: none;
+                outline: none;
+                border-bottom: rgba(255, 255, 255, 0) solid .6vw;
+            }
+
+            .active {
+                border-bottom: #fff solid .6vw;
+                font-size: 7vw;
+            }
+        }
+    }
+
+    main {
+        width: 100%;
+        padding-top: 14.9vw;
+
+        .banner {
+            width: 100%;
+            height: 58vw;
+            background: url('../../assets/banner.png') no-repeat;
+            background-size: 100% 100%;
+            border-bottom: .4vw solid $borderColor;
+        }
+
+        .canteen-container {
+            width: 100%;
+            height: 150vw;
+            background: $backgroundColor;
+
+            .canteen-buttons {
+                width: 95%;
+                height: 50vw;
+                margin: 0 auto;
+                padding-top: 6vw;
+                display: flex;
+                flex-flow: wrap;
+                justify-content: space-between;
+
+                .canteen-item {
+                    width: 47.5%;
+                    height: 36vw;
+                    border: .5vw solid $borderColor;
+                    border-radius: 2.5vw;
+                    margin-bottom: 2.5vw;
+                    z-index: 1;
+
+                    .canteen-pic {
+                        width: 100%;
+                        height: 28vw;
+                        border-top-left-radius: 2.5vw;
+                        border-top-right-radius: 2.5vw;
+                        border-bottom: .5vw solid $borderColor;
+                        background: pink;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .canteen-name {
+                        width: 100%;
+                        height: 7.5vw;
+                        border-bottom-left-radius: 2.5vw;
+                        border-bottom-right-radius: 2.5vw;
+                        background: #fff;
+                        color: #ec6a4c;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 5vw;
+                    }
+                }
+            }
+
+            .chili1 {
+                width: 10vw;
+                height: 7vw;
+                position: relative;
+                background: url('../../assets/chili1.png') no-repeat;
+                background-size: 100% 100%;
+                left: 8vw;
+                top: -55vw;
+                z-index: 0;
+            }
+
+            .chili2 {
+                width: 10vw;
+                height: 7vw;
+                position: relative;
+                background: url('../../assets/chili1.png') no-repeat;
+                background-size: 100% 100%;
+                left: -2vw;
+                top: 23vw;
+                z-index: 0;
+            }
+            .chili3 {
+                width: 12vw;
+                height: 7vw;
+                position: relative;
+                background: url('../../assets/chili3.png') no-repeat;
+                background-size: 100% 100%;
+                left: 80vw;
+                top: 10vw;
+                z-index: 0;
+            }
+
+            .vote-footer {
+                position: relative;
+                top: 20vw;
+                text-align: center;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-size: 3.6vw;
+                color: #fc9870;
+            }
+        }
+
+        .ranking-container {
+            background: $backgroundColor;
+            width: 100%;
+            height: 220vw;
+            padding-top: 2.5vw;
+
+            .ranking-item {
+                width: 88%;
+                height: 22.5vw;
+                padding: 1vw 3%;
+                background: #fff;
+                margin: 0 auto;
+                border: solid .5vw $borderColor;
+                border-radius: 2vw;
+                margin-bottom: 2.5vw;
+                display: flex;
+                align-items: center;
+                position: relative;
+                z-index: 1;
+
+                animation: fadeInUp 1s ease;
+                animation-fill-mode: backwards;
+
+                .number {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        width: 8vw;
+                    }
+                }
+
+                .dish-pic {
+                    display: flex;
+                    align-items: center;
+                    margin-left: 3vw;
+                    margin-right: 3vw;
+
+                    img {
+                        width: 18vw;
+                        height: 18vw;
+                        border: solid .5vw $borderColor;
+                        border-radius: 2vw;
+                    }
+                }
+
+                .dish-info {
+                    height: 18vw;
+
+                    p {
+                        margin: 0;
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    }
+
+                    .like {
+                        float: right;
+                        display: flex;
+                        align-items: center;
+                        width: 19vw;
+                        font-weight: 600;
+                        color: #a83e0e;
+
+                        img {
+                            width: 5vw;
+                            margin-right: 1vw;
+                        }
+                    }
+
+                    .like-active {
+                        color: #e8322a;
+                    }
+
+                    .dish-name {
+                        color: #ff5a53;
+                        font-size: 4.5vw;
+                        font-weight: 600;
+                    }
+
+                    .dish-des {
+                        width: 56vw;
+                        color: #595959;
+                        font-size: 4vw;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        margin: 1.5vw 0;
+                    }
+
+                    .dish-canteen {
+                        color: #f39f4d;
+                        font-size: 4vw;
+                    }
+                }
+            }
+            
+            .chili4 {
+                width: 12vw;
+                height: 7vw;
+                position: relative;
+                background: url('../../assets/chili1.png') no-repeat;
+                background-size: 100% 100%;
+                left: -4vw;
+                top: -114vw;
+                transform: rotate(100deg);
+            }
+
+            .chili5 {
+                width: 12vw;
+                height: 7vw;
+                position: relative;
+                background: url('../../assets/chili3.png') no-repeat;
+                background-size: 100% 100%;
+                left: 92vw;
+                top: -70vw;
+                z-index: 0;
+                transform: rotateX(180deg) rotate(240deg);
+            }
+
+            .chili6 {
+                width: 12vw;
+                height: 7vw;
+                position: relative;
+                background: url('../../assets/chili1.png') no-repeat;
+                background-size: 100% 100%;
+                left: 0vw;
+                top: -19vw;
+                z-index: 0;
+                transform: rotate(-50deg);
+            }
+
+            .chili7 {
+                width: 12vw;
+                height: 7vw;
+                position: relative;
+                background: url('../../assets/chili1.png') no-repeat;
+                background-size: 100% 100%;
+                left: 92vw;
+                top: -27vw;
+                z-index: 0;
+                transform: rotate(110deg);
+            }
+
+            .ranking-footer {
+                position: relative;
+                top: -15.5vw;
+                text-align: center;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-size: 3.6vw;
+                color: #fc9870;
+            }
+        }
+    }
+}
