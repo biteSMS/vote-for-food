@@ -2,8 +2,8 @@ import {observable, action} from 'mobx'
 
 class Store {
     @observable jwt = null
-    @observable rank = null
-    @observable canteens = null
+    @observable rank = []
+    @observable canteens = []
     @observable currentPage = 'Index'
     @observable currentCanteen = null
     @observable currentDish = null
@@ -19,7 +19,6 @@ class Store {
     @action addData(data) {
         this.rank = data.rank
         this.canteens = data.canteens
-        console.log(data.canteens.延生食堂)
     }
     @action changeCanteen(canteen) {
         this.currentCanteen = canteen

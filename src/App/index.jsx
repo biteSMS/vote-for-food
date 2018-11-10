@@ -3,7 +3,7 @@ import Index from '../components/Index'
 import Store from '../mobx/store'
 import {observer} from 'mobx-react'
 import getUrlParam from '../api/getUrlParam'
-import axios from 'axios'
+import getData from '../api/getData'
 import './normalize.css'
 import './index.scss'
 
@@ -24,12 +24,7 @@ class App extends React.Component {
         }
 
         //获取菜品信息
-        axios
-            .get('https://wx.idsbllp.cn/foodbe/info')
-            .then(res => {
-                var data = res.data.data
-                Store.addData(data)
-            })
+        getData()
     }
 }
 

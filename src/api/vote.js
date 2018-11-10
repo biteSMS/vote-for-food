@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Store from '../mobx/store'
+import getData from './getData'
 
 export default function(id) {
     axios({
@@ -19,6 +20,7 @@ export default function(id) {
         {
             case 10000:
                 alert('点赞成功！')
+                getData()
                 break
             case 10004:
                 alert('今天的票数已经投完了哦！')

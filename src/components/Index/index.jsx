@@ -4,8 +4,8 @@ import Store from '../../mobx/store'
 import {observer} from 'mobx-react'
 import './index.scss'
 
-function alertVote() {
-    alert('请前往投票页面进行投票')
+function alertWarn(warn) {
+    alert(warn)
 }
 
 function changeCanteen(canteen) {
@@ -29,7 +29,7 @@ function CanteenItem(props) {
 
 function RankingItem(props) {
     return(
-        <div className="ranking-item" style={{animationDelay: `${props.index/8}s`}}>
+        <div className="ranking-item" style={{animationDelay: `${props.index/8}s`}} onClick={e => alertWarn('请前往投票界面查看菜品详情！', e)}>
             <div className="number">
                 <img src={require(`../../assets/${props.index+1}.png`)} alt=""/>
             </div>
@@ -37,7 +37,7 @@ function RankingItem(props) {
                 <img src={`https://wx.idsbllp.cn/foodbe/img/${props.item.id}.jpg`} alt=""/>
             </div>
             <div className="dish-info">
-                <p className="dish-name">{props.item.name}<span className="like like-active"><img src={require('../../assets/like.png')} alt="" onClick={alertVote}/>{props.item.votes}</span></p>
+                <p className="dish-name">{props.item.name}<span className="like like-active"><img src={require('../../assets/like.png')} alt="" onClick={e => {e.stopPropagation();alertWarn('请前往投票界面进行投票！', e)}}/>{props.item.votes}</span></p>
                 <p className="dish-des">介绍：{props.item.introduction}</p>
                 <p className="dish-canteen">食堂：{props.item.canteen}</p>
             </div>
