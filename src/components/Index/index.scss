@@ -98,7 +98,7 @@ $backgroundColor: #fff7b1;
                         border-top-left-radius: 2.5vw;
                         border-top-right-radius: 2.5vw;
                         border-bottom: .5vw solid $borderColor;
-                        background: pink;
+                        overflow: hidden;
 
                         img {
                             width: 100%;
@@ -237,23 +237,23 @@ $backgroundColor: #fff7b1;
 
                     .dish-name {
                         color: #ff5a53;
-                        font-size: 4.5vw;
+                        font-size: 4vw;
                         font-weight: 600;
                     }
 
                     .dish-des {
                         width: 56vw;
                         color: #595959;
-                        font-size: 4vw;
+                        font-size: 3.5vw;
                         text-overflow: ellipsis;
                         white-space: nowrap;
                         overflow: hidden;
-                        margin: 1.5vw 0;
+                        margin: 2vw 0;
                     }
 
                     .dish-canteen {
                         color: #f39f4d;
-                        font-size: 4vw;
+                        font-size: 3.5vw;
                     }
                 }
             }

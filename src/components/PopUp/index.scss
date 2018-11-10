@@ -4,7 +4,6 @@
     height: 100%;
     z-index: 5;
     background: rgba(51, 50, 50, 0.8);
-    //filter:blur(5vw);
     top: 0;
     left: 0;
     display: flex;
@@ -16,9 +15,10 @@
         width: 80vw;
         height: 120vw;
         background: #fff;
-        //filter:blur(10px);
         border-radius: 2vw;
         border: solid .5vw #8c3108;
+
+        animation: fadeInUp .5s ease;
 
         .dish-pic {
             width: 100%;
@@ -26,7 +26,6 @@
             border-bottom: solid .5vw #8c3108;
             border-top-left-radius: 2vw;
             border-top-right-radius: 2vw;
-            //background: pink;
 
             img {
                 width: 100%;
@@ -40,7 +39,6 @@
         .dish-info {
             width: 90%;
             height: 75vw;
-            //background: green;
             margin: 0 auto;
             padding-top: 4vw;
             overflow-y: scroll;

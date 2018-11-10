@@ -30,6 +30,7 @@ $backgroundColor: #fff7b1;
         display: flex;
         justify-content: center;
         position: fixed;
+        z-index: 5;
 
         .header-in {
             font-size: 7vw;
@@ -53,6 +54,7 @@ $backgroundColor: #fff7b1;
         width: 100%;
         min-height: 200vw;
         padding-top: 14.9vw;
+        padding-bottom: 6vw;
         background: $backgroundColor;
 
         .dish-item {
@@ -84,7 +86,6 @@ $backgroundColor: #fff7b1;
             .dish-info {
                 height: 18vw;
                 width: 70vw;
-                //background: #fff7b1;
 
                 p {
                     margin: 0;
@@ -120,7 +121,6 @@ $backgroundColor: #fff7b1;
                     color: #f39f4d;
                     font-size: 4vw;
                     text-overflow: ellipsis;
-                    //white-space: nowrap;
                     overflow: hidden;
                     margin-top: 1.5vw;
                     line-height: 5vw;

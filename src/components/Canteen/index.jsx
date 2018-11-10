@@ -2,17 +2,18 @@ import React from 'react'
 import PopUp from '../../components/PopUp'
 import {observer} from 'mobx-react'
 import Store from '../../mobx/store'
+import vote from '../../api/vote'
 import './index.scss'
 
 function DishItem(props) {
     return (
-        <div className="dish-item" style={{animationDelay: `${props.index/8+0.1}s`}}>
+        <div className="dish-item" style={{animationDelay: `${props.index/8+0.1}s`}} onClick={e => {Store.showPopUp(true, e);Store.changeDish(props.item, e)}}>
             <div className="dish-pic">
-                <img src={require('../../assets/canteendemo.png')} alt=""/>
+                <img src={`https://wx.idsbllp.cn/foodbe/img/${props.item.id}.jpg`} alt=""/>
             </div>
             <div className="dish-info">
-                <p className="dish-name">紫薯浓浆<span className="like like-active"><img src={require('../../assets/like.png')} alt=""/>100</span></p>
-                <p className="dish-des">介绍：紫薯浓浆是豆浆记忆最新研发的一 款粗粮饮品，饮品呈紫色，绿色健康</p>
+                <p className="dish-name">{props.item.name}<span className="like like-active"><img src={require('../../assets/like.png')} alt="" onClick={e => {e.stopPropagation();vote(props.item.id, e)}}/>{props.item.votes}</span></p>
+                <p className="dish-des">介绍：{props.item.introduction}</p>
             </div>
         </div>
     )
@@ -20,12 +21,16 @@ function DishItem(props) {
 
 function DishList() {
     return (
-        [1,2,3,4,5,6,7].map((item, index) => (<DishItem index={index}/>))
+        Store.canteens[Store.currentCanteen].map((item, index) => (<DishItem index={index} key={item.id} item={item}/>))
     )
 }
 
 @observer
 class Canteen extends React.Component {
+    state = {
+        showPopUp: false
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -33,18 +38,22 @@ class Canteen extends React.Component {
                 <header>
                     <div
                         className="return"
-                        onTouchStart={e => Store.showCanteen(false, e)}
+                        onClick={e => Store.showCanteen(false, e)}
                         ></div>
-                    <div className="header-in">千喜鹤食堂</div>
+                    <div className="header-in">{Store.currentCanteen}</div>
                     <div></div>
                 </header>
                 <main>
                     <DishList/>
                 </main>
                 </div>
-                {/* <PopUp/> */}
+                {Store.isShowPopUp && <PopUp/>}
             </React.Fragment>
         )
+    }
+    componentDidMount() {
+        document.documentElement.scrollTop = 0
+        document.body.scrollTop = 0
     }
 }
 

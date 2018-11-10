@@ -4,16 +4,25 @@ import Store from '../../mobx/store'
 import {observer} from 'mobx-react'
 import './index.scss'
 
-function CanteenItem() {
+function alertVote() {
+    alert('请前往投票页面进行投票')
+}
+
+function changeCanteen(canteen) {
+    Store.changeCanteen(canteen)
+    Store.showCanteen(true)
+}
+
+function CanteenItem(props) {
     return (
         <div
             className="canteen-item"
-            onTouchStart={e => Store.showCanteen(true, e)}
+            onClick={props.onTouchStart}
             >
             <div className="canteen-pic">
-                <img src={require('../../assets/canteendemo.png')} alt=""/>
+                <img src={props.img} alt=""/>
             </div>
-            <div className="canteen-name">千喜鹤食堂</div>
+            <div className="canteen-name">{props.name}</div>
         </div>
     )
 }
@@ -25,12 +34,12 @@ function RankingItem(props) {
                 <img src={require(`../../assets/${props.index+1}.png`)} alt=""/>
             </div>
             <div className="dish-pic">
-                <img src={require('../../assets/canteendemo.png')} alt=""/>
+                <img src={`https://wx.idsbllp.cn/foodbe/img/${props.item.id}.jpg`} alt=""/>
             </div>
             <div className="dish-info">
-                <p className="dish-name">家常烤鱼<span className="like like-active"><img src={require('../../assets/like.png')} alt=""/>100</span></p>
-                <p className="dish-des">介绍：测试测试测试测试测试测试测试测试测试测试测试测试</p>
-                <p className="dish-canteen">食堂：测试</p>
+                <p className="dish-name">{props.item.name}<span className="like like-active"><img src={require('../../assets/like.png')} alt="" onClick={alertVote}/>{props.item.votes}</span></p>
+                <p className="dish-des">介绍：{props.item.introduction}</p>
+                <p className="dish-canteen">食堂：{props.item.canteen}</p>
             </div>
         </div>
     )
@@ -48,7 +57,30 @@ function VotePage() {
             <div className="banner"></div>
             <div className="canteen-container">
                 <div className="canteen-buttons">
-                    {[1,2,3,4].map((item, index) => <CanteenItem index={index}/>)}
+                    <CanteenItem
+                        index={1}
+                        name="千喜鹤美食城"
+                        img="https://wx.idsbllp.cn/foodbe/img/18.jpg"
+                        onTouchStart={e => changeCanteen('千喜鹤美食城', e)}
+                        />
+                    <CanteenItem
+                        index={2}
+                        name="饮食服务中心"
+                        img="https://wx.idsbllp.cn/foodbe/img/38.jpg"
+                        onTouchStart={e => changeCanteen('饮食服务中心', e)}
+                        />
+                    <CanteenItem
+                        index={3}
+                        name="红高粱食堂"
+                        img="https://wx.idsbllp.cn/foodbe/img/28.jpg"
+                        onTouchStart={e => changeCanteen('红高粱食堂', e)}
+                        />
+                    <CanteenItem
+                        index={4}
+                        name="延生食堂"
+                        img="https://wx.idsbllp.cn/foodbe/img/7.jpg"
+                        onTouchStart={e => changeCanteen('延生食堂', e)}
+                        />
                 </div>
                 <div className="chili1"></div>
                 <div className="chili2"></div>
@@ -60,9 +92,12 @@ function VotePage() {
 }
 
 function RankingPage() {
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+
     return (
         <div className="ranking-container">
-            {[1,2,3,4,5].map((item, index) => <RankingItem index={index}/>)}
+            {Store.rank.map((item, index) => <RankingItem index={index} key={item.id} item={item}/>)}
             <div className="chili4"></div>
             <div className="chili5"></div>
             <div className="chili6"></div>
@@ -101,6 +136,11 @@ class Index extends React.Component {
                 {Store.currentPage === 'Canteen' && <Canteen/>}
             </React.Fragment>
         )
+    }
+
+    componentDidMount() {
+        document.documentElement.scrollTop = 0
+        document.body.scrollTop = 0
     }
 
     changeTab = tab => {
