@@ -14,7 +14,6 @@ export default function(id) {
         }
     })
     .then(res => {
-        console.log(res.data)
         var status = res.data.status
         switch (status)
         {
