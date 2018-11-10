@@ -1,9 +1,15 @@
 import React from 'react'
+import Canteen from '../../components/Canteen'
+import Store from '../../mobx/store'
+import {observer} from 'mobx-react'
 import './index.scss'
 
 function CanteenItem() {
     return (
-        <div className="canteen-item">
+        <div
+            className="canteen-item"
+            onTouchStart={e => Store.showCanteen(true, e)}
+            >
             <div className="canteen-pic">
                 <img src={require('../../assets/canteendemo.png')} alt=""/>
             </div>
@@ -66,14 +72,16 @@ function RankingPage() {
     )
 }
 
-export default class Index extends React.Component {
+@observer
+class Index extends React.Component {
     state = {
         currentTab: 'vote'
     }
 
     render() {
         return (
-            <div className="index">
+            <React.Fragment>
+                <div className="index">
                 <header>
                     <div className="header-in">
                         <button
@@ -89,7 +97,9 @@ export default class Index extends React.Component {
                 <main>
                     {this.state.currentTab === 'vote' ? <VotePage/> : <RankingPage/>}
                 </main>
-            </div>
+                </div>
+                {Store.currentPage === 'Canteen' && <Canteen/>}
+            </React.Fragment>
         )
     }
 
@@ -99,3 +109,5 @@ export default class Index extends React.Component {
         })
     }
 }
+
+export default Index

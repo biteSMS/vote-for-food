@@ -1,0 +1,68 @@
+.pop-up {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background: rgba(51, 50, 50, 0.8);
+    //filter:blur(5vw);
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    touch-action: none;
+
+    .container {
+        width: 80vw;
+        height: 120vw;
+        background: #fff;
+        //filter:blur(10px);
+        border-radius: 2vw;
+        border: solid .5vw #8c3108;
+
+        .dish-pic {
+            width: 100%;
+            height: 36vw;
+            border-bottom: solid .5vw #8c3108;
+            border-top-left-radius: 2vw;
+            border-top-right-radius: 2vw;
+            //background: pink;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-bottom: solid .6vw #8c3108;
+                border-top-left-radius: 1.5vw;
+                border-top-right-radius: 1.5vw;
+            }
+        }
+
+        .dish-info {
+            width: 90%;
+            height: 75vw;
+            //background: green;
+            margin: 0 auto;
+            padding-top: 4vw;
+            overflow-y: scroll;
+            color: #4c4c4c;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+            p {
+                margin: 0;
+            }
+
+            .dish-name {
+                font-family: tt;
+                color: #ec6a4c;
+                font-size: 5vw;
+                font-weight: 600;
+            }
+
+            .dish-pra {
+                margin-top: 2vw;
+                font-size: 3.5vw;
+                line-height: 4.6vw;
+            }
+        }
+    }
+}
