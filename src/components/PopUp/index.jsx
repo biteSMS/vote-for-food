@@ -21,4 +21,8 @@ export default class PopUp extends React.Component {
             </div>
         )
     }
+
+    componentDidMount() {
+        window.history.pushState({page : 'state4'},'state','#state4')
+    }
 }

@@ -54,6 +54,8 @@ class Canteen extends React.Component {
     componentDidMount() {
         document.documentElement.scrollTop = 0
         document.body.scrollTop = 0
+
+        window.history.pushState({page : 'state3'},'state','#state3')
     }
 }
 
