@@ -1,9 +1,10 @@
 import axios from 'axios'
 import Store from '../mobx/store'
 import getData from './getData'
+import getVote from './getVote'
 
 export default function(id) {
-    axios({
+     return axios({
         method: 'POST',
         url: 'https://wx.idsbllp.cn/foodbe/vote',
         params: {
@@ -18,18 +19,23 @@ export default function(id) {
         switch (status)
         {
             case 10000:
+                Store.changeVoteStatus(1)
                 alert('点赞成功！')
-                getData()
+                //getData()
+                getVote()
                 break
             case 10004:
+            Store.changeVoteStatus(0)
                 alert('今天的票数已经投完了哦！')
                 break
             default:
+                Store.changeVoteStatus(0)
                 alert('用户信息验证失败，请重新进入本网站')
         }
     })
     .catch(err => {
         console.log(err)
+        Store.changeVoteStatus(0)
         alert('请检查手机网络状态')
     })
 }

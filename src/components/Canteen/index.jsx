@@ -4,19 +4,45 @@ import {observer} from 'mobx-react'
 import Store from '../../mobx/store'
 import vote from '../../api/vote'
 import './index.scss'
+import getData from '../../api/getData';
 
-function DishItem(props) {
-    return (
-        <div className="dish-item" style={{animationDelay: `${props.index/8+0.1}s`}} onClick={e => {Store.showPopUp(true, e);Store.changeDish(props.item, e)}}>
-            <div className="dish-pic">
-                <img src={`https://wx.idsbllp.cn/foodbe/img/${props.item.id}.jpg`} alt=""/>
+class DishItem extends React.Component {
+    state = {
+        //currentVote: this.props.item.votes,
+        currentVote: Store.canteens[Store.currentCanteen].filter(e => e.id === this.props.item.id)[0].votes,
+        img: Store.voteList.includes(this.props.item.id) ? 'like-active' : 'like'
+    }
+    render() {
+        return (
+            <div className="dish-item" style={{animationDelay: `${this.props.index/8+0.1}s`}} onClick={e => {Store.showPopUp(true, e);Store.changeDish(this.props.item, e)}}>
+                <div className="dish-pic">
+                    <img src={`https://wx.idsbllp.cn/foodbe/img/${this.props.item.id}.jpg`} alt=""/>
+                </div>
+                <div className="dish-info">
+                    <p className="dish-name">{this.props.item.name}<span className={`like ${Store.voteList.includes(this.props.item.id) ? 'like-active' : ''}`}><img src={require(`../../assets/${this.state.img}.png`)} alt="" onClick={e => this.onClickVote(this.props.item.id, e)}/>{Store.canteens[Store.currentCanteen].filter(e => e.id === this.props.item.id)[0].votes}</span></p>
+                    <p className="dish-des">介绍：{this.props.item.introduction}</p>
+                </div>
             </div>
-            <div className="dish-info">
-                <p className="dish-name">{props.item.name}<span className="like like-active"><img src={require('../../assets/like.png')} alt="" onClick={e => {e.stopPropagation();vote(props.item.id, e)}}/>{props.item.votes}</span></p>
-                <p className="dish-des">介绍：{props.item.introduction}</p>
-            </div>
-        </div>
-    )
+        )
+    }
+    onClickVote = (id, e) => {
+        e.stopPropagation()
+        vote(id)
+        .then(res => {
+            if (Store.voteStatus === 1) {
+                Store.canteens[Store.currentCanteen].filter(e => e.id === id)[0].votes++
+                this.setState(prevState => ({
+                    currentVote: prevState.currentVote += 1,
+                    img: 'like-active'
+                }))
+            }
+        })
+        // .then(res => {
+        //     if (Store.voteStatus === 1) {
+        //         getData()
+        //     }
+        // })
+    }
 }
 
 function DishList() {

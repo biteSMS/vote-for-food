@@ -28,18 +28,18 @@
     You need to enable JavaScript to run this app.
   </noscript>
   <div id="root"></div>
-  <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-  <script src="https://wx.idsbllp.cn/api/share.js?1234"></script>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script src="https://wx.idsbllp.cn/wx-api/share.js"></script>
   <script>
     WXSHARE.config({
       debug: false
     });
     WXSHARE.ready(function () {
       var option = {
+        title: "重邮厨神",
+        link: "https://wx.idsbllp.cn/foodbe/index",
+        imgUrl: 'https://wx.idsbllp.cn/foodfe/share.png',
         desc: '重邮厨神',
-        link: ' https://wx.idsbllp.cn/foodbe/index',
-        imgUrl: '%PUBLIC_URL%/share.png',
-        title: '重邮厨神',
         type: '',
         success: function () {
           console.log('分享成功');

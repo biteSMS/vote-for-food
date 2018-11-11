@@ -1,4 +1,5 @@
 import {observable, action} from 'mobx'
+import getData from '../api/getData'
 
 class Store {
     @observable jwt = null
@@ -8,10 +9,12 @@ class Store {
     @observable currentCanteen = null
     @observable currentDish = null
     @observable isShowPopUp = false
+    @observable voteList = []
+    @observable voteStatus = 0
 
     @action showCanteen(isShow) {
-        if (isShow) this.currentPage = 'Canteen'
-        if (!isShow) this.currentPage = 'Index'
+            if (isShow) this.currentPage = 'Canteen'
+            if (!isShow) this.currentPage = 'Index'
     }
     @action addJwt(jwt) {
         this.jwt = jwt
@@ -28,6 +31,12 @@ class Store {
     }
     @action changeDish(dish) {
         this.currentDish = dish
+    }
+    @action refreshVoteList(list) {
+        this.voteList = list
+    }
+    @action changeVoteStatus(status) {
+        this.voteStatus = status
     }
 }
 

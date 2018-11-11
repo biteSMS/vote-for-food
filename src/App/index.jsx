@@ -4,6 +4,7 @@ import Store from '../mobx/store'
 import { observer } from 'mobx-react'
 import getUrlParam from '../api/getUrlParam'
 import getData from '../api/getData'
+import getVote from '../api/getVote'
 import './normalize.css'
 import './index.scss'
 
@@ -25,6 +26,10 @@ class App extends React.Component {
 
         //获取菜品信息
         getData()
+
+        if(jwt) {
+            getVote()
+        }
 
         window.history.pushState({ page: 'state1' }, 'state', '#state1')
         window.history.pushState({ page: 'state2' }, 'state', '#state2')
