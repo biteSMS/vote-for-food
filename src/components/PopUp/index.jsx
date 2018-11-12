@@ -1,7 +1,6 @@
 import React from 'react'
 import Store from '../../mobx/store'
 import vote from '../../api/vote'
-import getData from '../../api/getData'
 import './index.scss'
 
 export default class PopUp extends React.Component {
@@ -36,6 +35,7 @@ export default class PopUp extends React.Component {
         vote(id)
         .then(res => {
             if (Store.voteStatus === 1) {
+                //Store.voteList.push(id)
                 Store.canteens[Store.currentCanteen].filter(e => e.id === id)[0].votes++
                 this.setState(prevState => ({
                     currentVote: prevState.currentVote += 1,

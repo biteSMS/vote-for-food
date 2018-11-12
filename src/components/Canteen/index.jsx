@@ -4,11 +4,9 @@ import {observer} from 'mobx-react'
 import Store from '../../mobx/store'
 import vote from '../../api/vote'
 import './index.scss'
-import getData from '../../api/getData';
 
 class DishItem extends React.Component {
     state = {
-        //currentVote: this.props.item.votes,
         currentVote: Store.canteens[Store.currentCanteen].filter(e => e.id === this.props.item.id)[0].votes,
         img: Store.voteList.includes(this.props.item.id) ? 'like-active' : 'like'
     }
@@ -37,11 +35,6 @@ class DishItem extends React.Component {
                 }))
             }
         })
-        // .then(res => {
-        //     if (Store.voteStatus === 1) {
-        //         getData()
-        //     }
-        // })
     }
 }
 

@@ -1,5 +1,4 @@
 import {observable, action} from 'mobx'
-import getData from '../api/getData'
 
 class Store {
     @observable jwt = null

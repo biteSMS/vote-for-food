@@ -1,6 +1,5 @@
 import axios from 'axios'
 import Store from '../mobx/store'
-import getData from './getData'
 import getVote from './getVote'
 
 export default function(id) {
@@ -21,11 +20,10 @@ export default function(id) {
             case 10000:
                 Store.changeVoteStatus(1)
                 alert('点赞成功！')
-                //getData()
                 getVote()
                 break
             case 10004:
-            Store.changeVoteStatus(0)
+                Store.changeVoteStatus(0)
                 alert('今天的票数已经投完了哦！')
                 break
             default:
